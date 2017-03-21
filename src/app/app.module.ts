@@ -13,12 +13,15 @@ import { CampDetailsPage } from '../pages/camp-details/camp-details';
 // Providers
 import { GoogleMaps }   from '../providers/google-maps';
 import { Connectivity } from '../providers/connectivity';
-import { GoogleMaps }   from '../providers/data';
+import { Data }         from '../providers/data';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LocationPage,
+    MyDetailsPage,
+    CampDetailsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,8 +29,12 @@ import { GoogleMaps }   from '../providers/data';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LocationPage,
+    MyDetailsPage,
+    CampDetailsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, Data, GoogleMaps, Connectivity]
 })
+
 export class AppModule {}
