@@ -1,7 +1,17 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+import { Storage } from '@ionic/storage';
+
+// Pages
+import { HomePage }        from '../pages/home/home';
+import { LocationPage }    from '../pages/location/location';
+import { MyDetailsPage }   from '../pages/my-details/my-details';
+import { CampDetailsPage } from '../pages/camp-details/camp-details';
+
+// Providers
+
 
 @NgModule({
   declarations: [
