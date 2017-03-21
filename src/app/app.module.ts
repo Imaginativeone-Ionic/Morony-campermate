@@ -11,7 +11,9 @@ import { MyDetailsPage }   from '../pages/my-details/my-details';
 import { CampDetailsPage } from '../pages/camp-details/camp-details';
 
 // Providers
-
+import { GoogleMaps }   from '../providers/google-maps';
+import { Connectivity } from '../providers/connectivity';
+import { GoogleMaps }   from '../providers/data';
 
 @NgModule({
   declarations: [
