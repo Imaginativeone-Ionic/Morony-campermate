@@ -2,7 +2,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
+// import { Storage } from '@ionic/storage';
 
 // Pages
 import { HomePage }        from '../pages/home/home';
@@ -24,7 +25,8 @@ import { Data }         from '../providers/data';
     CampDetailsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
