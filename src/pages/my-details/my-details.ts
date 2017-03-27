@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Data } from '../../providers/data';
 
 /*
   Generated class for the MyDetails page.
@@ -12,8 +14,11 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'my-details.html'
 })
 export class MyDetailsPage {
+  
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, 
+    public dataService: Data, public navParams: NavParams) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyDetailsPage');
