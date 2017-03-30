@@ -16,14 +16,28 @@ import { Data } from '../../providers/data';
 
 export class CampDetailsPage {
 
+  campDetailsForm: FormGroup;
+
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, 
     public dataService: Data, public navParams: NavParams) {
 
-      // 
-
+      this.campDetailsForm = formBuilder.group({
+        gateAccessCode: [''],
+        amenitiesCode:  [''],
+        wifiPassword:   [''],
+        phoneNumber:    [''],
+        departure:      [''],
+        notes:          ['']
+      });
     }
 
-  saveForm(): void {}
+  saveForm(): void {
+
+    let data = this.campDetailsForm.value;
+
+    // this.dataService.setCampDetails(data);
+
+  }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad CampDetailsPage');
