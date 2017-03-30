@@ -14,14 +14,29 @@ import { Data } from '../../providers/data';
   templateUrl: 'my-details.html'
 })
 export class MyDetailsPage {
+
+  myDetailsForm: FormGroup;
   
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, 
     public dataService: Data, public navParams: NavParams) {
-
+    this.myDetailsForm = formBuilder.group({
+      carRegistration:     [''],
+      trailerRegistration: [''],
+      trailerDimensions:   [''],
+      phoneNumber:         [''],
+      notes:               ['']
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyDetailsPage');
+  }
+
+  saveForm(): void {
+
+    let data = this.myDetailsForm.value;
+    // this.dataService.setMyDetails(data);
+
   }
 
 }
