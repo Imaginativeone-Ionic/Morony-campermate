@@ -1,4 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable }   from '@angular/core';
+import { Platform }     from 'ionic-angular';
+import { Connectivity } from './connectivity';
+import { Geolocation }  from 'ionic-native';
+
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
