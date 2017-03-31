@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Network } from 'ionic-native';
+import { Platform } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -8,11 +12,34 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
+declare var Connection;
+
 @Injectable()
+
 export class Connectivity {
 
-  constructor(public http: Http) {
+  onDevice: boolean;
+
+  constructor(public platform: Platform, public http: Http) {
     console.log('Hello Connectivity Provider');
+
+    this.onDevice = this.platform.is('cordova');
+
+  }
+  
+  isOnline(): boolean {
+
+    if (this.onDevice && Network.type) {
+
+      return Network.type != 'none';
+
+    } else {
+
+      return !navigator.onLine;
+
+    }
+
   }
 
 }
