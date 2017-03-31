@@ -29,10 +29,18 @@ export class Connectivity {
   }
   
   isOnline(): boolean {
+    if (this.onDevice && Network.type) {
+      return Network.type != 'none';
+    } else {
+      return !navigator.onLine;
+    }
+  }
+
+  isOffline(): boolean {
 
     if (this.onDevice && Network.type) {
 
-      return Network.type != 'none';
+      return Network.type == 'none';
 
     } else {
 
