@@ -37,17 +37,19 @@ export class Connectivity {
   }
 
   isOffline(): boolean {
-
     if (this.onDevice && Network.type) {
-
       return Network.type == 'none';
-
     } else {
-
       return !navigator.onLine;
-
     }
-
   }
 
+  watchOnline(): Observable<any> {
+    return Network.onConnect();
+  }
+
+  watchOnline(): Observable<any> {
+    return Network.onDisconnect();
+  }
+  
 }
