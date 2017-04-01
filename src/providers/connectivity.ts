@@ -48,7 +48,7 @@ export class Connectivity {
     return Network.onConnect();
   }
 
-  watchOnline(): Observable<any> {
+  watchOffline(): Observable<any> {
     return Network.onDisconnect();
   }
   

@@ -29,7 +29,7 @@
 
   <ion-list no-lines>
 
-    <form>
+    <form [formGroup]="myDetailsForm" (change)="saveForm()">
 
       <ion-item [formGroup]="myDetailsForm" (change)="saveForm()">
         <ion-label stacked>Car Registration</ion-label>

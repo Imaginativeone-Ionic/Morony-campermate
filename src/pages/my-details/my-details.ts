@@ -13,20 +13,22 @@ import { Data } from '../../providers/data';
   selector: 'page-my-details',
   templateUrl: 'my-details.html'
 })
+
 export class MyDetailsPage {
 
   myDetailsForm: FormGroup;
   
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, 
     public dataService: Data, public navParams: NavParams) {
-    this.myDetailsForm = formBuilder.group({
-      carRegistration:     [''],
-      trailerRegistration: [''],
-      trailerDimensions:   [''],
-      phoneNumber:         [''],
-      notes:               ['']
-    });
-  }
+    
+      this.myDetailsForm = formBuilder.group({
+        carRegistration:     [''],
+        trailerRegistration: [''],
+        trailerDimensions:   [''],
+        phoneNumber:         [''],
+        notes:               ['']
+      });
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyDetailsPage');
