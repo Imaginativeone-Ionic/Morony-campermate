@@ -130,9 +130,25 @@ export class GoogleMaps {
 
   }
 
-  disableMap(): void {}
+  disableMap(): void {
 
-  enableMap(): void {}
+    if(this.pleaseConnect) {
+
+      this.pleaseConnect.style.display = "block";
+
+    }
+    
+  }
+
+  enableMap(): void {
+
+    if(this.pleaseConnect) {
+
+      this.pleaseConnect.style.display = "none";
+
+    }
+
+  }
 
   addConnectivityListeners(): void {}
 
