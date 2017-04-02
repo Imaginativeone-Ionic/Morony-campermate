@@ -22,16 +22,17 @@ export class GoogleMaps {
   mapLoaded: any;
   mapLoadedObserver: any;
   currentMarker: any;
-  apiKey: string;
+  apiKey: string = "AIzaSyC-FlaMjI_bkiKO96mL-Jy3iXyFWrNIZvw";
 
   constructor(public connectivityService: Connectivity, public http: Http) {
-    console.log('Hello GoogleMaps Provider');
+    console.log('constructor: Hello GoogleMaps Provider');
   }
 
   init(mapElement: any, pleaseConnect: any): Promise<any> {
 
-    this.mapElement = mapElement;
+    console.log("init() function");
 
+    this.mapElement    = mapElement;
     this.pleaseConnect = pleaseConnect;
 
     return this.loadGoogleMaps();
@@ -40,19 +41,26 @@ export class GoogleMaps {
 
   loadGoogleMaps(): Promise<any> {
 
+    console.log("loadGoogleMaps() function");
+
     return new Promise((resolve) => {
+
+      console.log("typeof google: ", typeof google);
 
       if (typeof google == "undefined" || typeof google.maps == "undefined") {
 
-        console.log("Google maps JavaScript needs to be loaded.");
+        console.log("Google Maps JavaScript must be loaded.");
 
         this.disableMap();
 
         if (this.connectivityService.isOnline()) {
 
+          console.log("Connectivity Service is Online", this.connectivityService);
+          console.log("Connectivity Service is Online", this.connectivityService.isOnline());
+
           window['mapInit'] = () => {
 
-            this.initMap().then( () => {
+            this.initMap().then(() => {
 
               resolve(true);
 
@@ -65,13 +73,19 @@ export class GoogleMaps {
           let script = document.createElement("script");
               script.id = "googleMaps";
 
+          console.log("this.apiKey: ", this.apiKey);
+
           if (this.apiKey) {
 
             script.src = 'http://maps.google.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit';
 
+            console.log("script: ", script);
+
           } else {
 
             script.src = 'http://maps.google.com/maps/api/js?callback=mapInit';
+
+            console.log("script: ", script);
 
           }
 
@@ -79,8 +93,8 @@ export class GoogleMaps {
 
         }
 
-      }
-
+      } 
+      
       else {
 
         if (this.connectivityService.isOnline()) {
@@ -91,7 +105,6 @@ export class GoogleMaps {
         } else {
 
           this.disableMap();
-
         }
 
       }
@@ -104,6 +117,8 @@ export class GoogleMaps {
 
   initMap(): Promise<any> {
 
+    console.log("initMap() function");
+
     this.mapInitialised = true;
 
     return new Promise((resolve) => {
@@ -113,15 +128,12 @@ export class GoogleMaps {
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         let mapOptions = {
-
           center: latLng,
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP
-
         }
 
         this.map = new google.maps.Map(this.mapElement, mapOptions);
-
         resolve(true);
 
       });
@@ -131,18 +143,25 @@ export class GoogleMaps {
   }
 
   disableMap(): void {
-    if(this.pleaseConnect) {
+
+    console.log("disableMap() function");
+    if (this.pleaseConnect) {
       this.pleaseConnect.style.display = "block";
     }
   }
 
   enableMap(): void {
-    if(this.pleaseConnect) {
+
+    console.log("enableMap() function");
+    if (this.pleaseConnect) {
       this.pleaseConnect.style.display = "none";
     }
+
   }
 
   addConnectivityListeners(): void {
+
+    console.log("addConnectivityListeners() function");
 
     this.connectivityService.watchOnline().subscribe(() => {
 
@@ -150,7 +169,7 @@ export class GoogleMaps {
 
       setTimeout(() => {
 
-        if(typeof google == "undefined" || typeof google.maps == "undefined") {
+        if (typeof google == "undefined" || typeof google.maps == "undefined") {
 
           this.loadGoogleMaps();
 
@@ -158,7 +177,7 @@ export class GoogleMaps {
         
         else {
 
-          if(!this.mapInitialised) {
+          if (!this.mapInitialised) {
 
             this.initMap();
 
@@ -179,26 +198,22 @@ export class GoogleMaps {
       this.disableMap();
 
     });
-    
+
   }
 
   changeMarker(lat: number, lng: number): void {
     
+    console.log("changeMarker() function");
+
     let latLng = new google.maps.LatLng(lat, lng);
 
     let marker = new google.maps.Marker({
-
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: latLng
-
     });
 
-    if (this.currentMarker) {
-
-      this.currentMarker.setMap(null);
-
-    }
+    if (this.currentMarker) { this.currentMarker.setMap(null) }
 
     this.currentMarker = marker;
 

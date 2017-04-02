@@ -3,7 +3,7 @@ import { LocationPage }    from '../location/location';
 import { MyDetailsPage }   from '../my-details/my-details';
 import { CampDetailsPage } from '../camp-details/camp-details';
 
-import { NavController } from 'ionic-angular';
+import { NavController }   from 'ionic-angular';
 
 @Component({
   selector: 'page-home',

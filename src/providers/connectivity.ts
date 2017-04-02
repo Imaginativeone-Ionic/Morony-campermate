@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Network } from 'ionic-native';
-import { Platform } from 'ionic-angular';
+import { Network }    from 'ionic-native';
+import { Platform }   from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
 import { Http } from '@angular/http';
@@ -22,6 +22,7 @@ export class Connectivity {
   onDevice: boolean;
 
   constructor(public platform: Platform, public http: Http) {
+
     console.log('Hello Connectivity Provider');
 
     this.onDevice = this.platform.is('cordova');
@@ -32,7 +33,7 @@ export class Connectivity {
     if (this.onDevice && Network.type) {
       return Network.type != 'none';
     } else {
-      return !navigator.onLine;
+      return navigator.onLine;
     }
   }
 

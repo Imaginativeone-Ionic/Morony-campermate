@@ -36,7 +36,7 @@ import { Data }         from '../providers/data';
     MyDetailsPage,
     CampDetailsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, Data, GoogleMaps, Connectivity]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, IonicStorageModule, Data, GoogleMaps, Connectivity]
 })
 
 export class AppModule {}
