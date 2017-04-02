@@ -131,26 +131,56 @@ export class GoogleMaps {
   }
 
   disableMap(): void {
-
     if(this.pleaseConnect) {
-
       this.pleaseConnect.style.display = "block";
-
     }
-    
   }
 
   enableMap(): void {
-
     if(this.pleaseConnect) {
-
       this.pleaseConnect.style.display = "none";
-
     }
-
   }
 
-  addConnectivityListeners(): void {}
+  addConnectivityListeners(): void {
+
+    this.connectivityService.watchOnline().subscribe(() => {
+
+      console.log("online");
+
+      setTimeout(() => {
+
+        if(typeof google == "undefined" || typeof google.maps == "undefined") {
+
+          this.loadGoogleMaps();
+
+        } 
+        
+        else {
+
+          if(!this.mapInitialised) {
+
+            this.initMap();
+
+          }
+
+          this.enableMap();
+
+        }
+
+      }, 2000);
+
+    });
+
+    this.connectivityService.watchOffline().subscribe(() => {
+
+      console.log("offline");
+
+      this.disableMap();
+
+    });
+    
+  }
 
   changeMarker(lat: number, lng: number): void {}
 
