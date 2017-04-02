@@ -27,13 +27,18 @@ export class LocationPage {
       public platform: Platform, public dataService: Data, public alertCtrl: AlertController, 
       public navParams: NavParams) {
 
-
-
       }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LocationPage');
     console.log('@ViewChild has been added');
+
+    this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
+
+      // this.maps.changeMarker(this.latitude, this.longitude);
+
+    });
+
   }
 
   setLocation(): void {
