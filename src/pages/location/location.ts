@@ -35,7 +35,7 @@ export class LocationPage {
 
     this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
 
-      // this.maps.changeMarker(this.latitude, this.longitude);
+      this.maps.changeMarker(this.latitude, this.longitude);
 
     });
 
@@ -44,6 +44,31 @@ export class LocationPage {
   setLocation(): void {
 
     alert("Set Location");
+
+    Geolocation.getCurrentPosition().then((position) => {
+
+      this.latitude  = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+
+      this.maps.changeMarker(position.coords.latitude, position.coords.longitude);
+
+      let data = {
+        latitude:  this.latitude,
+        longitude: this.longitude
+      }
+
+      // this.dataService.setLocation(data);
+
+      let alert = this.alertCtrl.create({
+        title:    'Location Set!',
+        subTitle: 'You can now find your way back to you camp site from ' + 
+                  'anywhere by clicking the button in the top right corner.',
+        buttons: [{ text: 'Ok'}]
+      });
+
+      alert.present();
+
+    });
 
   }
 
