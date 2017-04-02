@@ -104,7 +104,29 @@ export class GoogleMaps {
 
   initMap(): Promise<any> {
 
-    return; // this needs to be updated
+    this.mapInitialised = true;
+
+    return new Promise((resolve) => {
+
+      Geolocation.getCurrentPosition().then((position) => {
+
+        let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        let mapOptions = {
+
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+
+        }
+
+        this.map = new google.maps.Map(this.mapElement, mapOptions);
+
+        resolve(true);
+
+      });
+
+    });
 
   }
 
