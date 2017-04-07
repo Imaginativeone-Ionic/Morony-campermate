@@ -42,11 +42,15 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
     "cordova-plugin-geolocation",
+    "cordova-plugin-compat",
     "cordova-plugin-network-information",
     "cordova-sqlite-storage",
     "cordova-plugin-inappbrowser",
     "cordova-plugin-crosswalk-webview",
-    "cordova-plugin-wkwebview-engine"
+    {
+      "locator": "https://github.com/driftyco/cordova-plugin-wkwebview-engine.git",
+      "id": "cordova-plugin-wkwebview-engine"
+    }
   ],
   "cordovaPlatforms": [
     "ios",
@@ -54,6 +58,11 @@
       "platform": "ios",
       "version": "",
       "locator": "ios"
+    },
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
     }
   ],
   "description": "campermate: An Ionic project"
